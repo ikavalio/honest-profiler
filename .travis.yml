@@ -1,4 +1,4 @@
-language: java
+language: cpp
 sudo: required
 compiler:
   - clang
@@ -15,6 +15,9 @@ branches:
 before_install:
   - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get update && sudo apt-get install -y libunittest++-dev; fi
   - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install unittest-cpp; fi
+  - g++ --version
+  - clang++ --version
+  - java --version
 install: cmake CMakeLists.txt
 script: make && build/unitTests
 after_script: rm -f *.hpl *.log
