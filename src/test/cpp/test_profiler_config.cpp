@@ -153,7 +153,9 @@ TEST_FIXTURE(ProfilerControl, ProfilerConcurrentStartStop) {
 	std::vector<std::thread> threads(tsize);
 
 	for (int it = 0; it < 100; it++) {
+#ifdef ENABLE_TRACING
 		int prev = Trace_Processor[kTraceProcessorStart].count.load();
+#endif
 		for (int i = 0; i < tsize; i++)
 			threads[i] = std::thread(&threadStartFunction, std::ref(profiler));
 		for (int i = 0; i < tsize; i++)
@@ -165,7 +167,9 @@ TEST_FIXTURE(ProfilerControl, ProfilerConcurrentStartStop) {
 #endif
 		CHECK(profiler->isRunning());
 
+#ifdef ENABLE_TRACING
 		prev = Trace_Processor[kTraceProcessorStop].count.load();
+#endif
 		for (int i = 0; i < tsize; i++)
 			threads[i] = std::thread(&threadStopFunction, std::ref(profiler));
 		for (int i = 0; i < tsize; i++)

@@ -15,3 +15,4 @@ before_install:
   - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install unittest-cpp; fi
 install: cmake CMakeLists.txt
 script: make && build/unitTests
+after_script: rm -f *.hpl *.log
