@@ -4,6 +4,8 @@
 #include "test.h"
 #include "../../main/cpp/profiler.h"
 
+#ifndef __APPLE__
+
 static JavaVM *jvm = NULL;
 static JNIEnv *env = NULL;
 static jvmtiEnv *jvmti = NULL;
@@ -218,3 +220,5 @@ TEST_FIXTURE(ProfilerControl, ProfilerConcurrentModification) {
 	//TraceGroup_Profiler.dumpIfUsed();
 #endif
 }
+
+#endif
