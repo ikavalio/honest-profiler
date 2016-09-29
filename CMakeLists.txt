@@ -126,6 +126,8 @@ add_library(${OUTPUT} SHARED ${SOURCE_FILES})
 
 if ("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD") 
     target_link_libraries(${OUTPUT} ${JNI_LIBRARIES} rt)
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(${OUTPUT} ${JNI_LIBRARIES} dl)
 else()
     target_link_libraries(${OUTPUT} ${JNI_LIBRARIES} dl rt)
 endif()
