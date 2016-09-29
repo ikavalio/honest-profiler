@@ -12,8 +12,8 @@ branches:
   - master
   - stage
 before_install:
-  - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get -qq update && sudo apt-get install -y libunittest++-dev; fi
-  - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install unittest-cpp; fi
+  - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get install -y libunittest++-dev; fi
+  - if [ $TRAVIS_OS_NAME == osx ]; then brew install unittest-cpp; fi
 install: cmake CMakeLists.txt
 script: make && build/unitTests
 after_script: rm -f *.hpl *.log
